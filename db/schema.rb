@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_172530) do
+ActiveRecord::Schema.define(version: 2021_02_26_144412) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 2021_02_25_172530) do
   create_table "games", force: :cascade do |t|
     t.string "sport_key"
     t.string "sport_nice"
-    t.string "teams"
     t.string "home_team"
     t.string "commence_time"
     t.string "sites"
     t.integer "sites_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "away_team"
   end
 
   create_table "leagues", force: :cascade do |t|

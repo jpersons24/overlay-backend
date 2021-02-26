@@ -32,30 +32,12 @@ require 'pry'
 #    )
 # end
 
-puts 'calling to API'
 
-puts 'destroying games'
-Game.destroy_all
 
-response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=spreads&dateFormat=iso'
-response_body = response.body
-games = JSON.parse(response_body)
-
-puts 'creating games'
-
-games["data"].each do |game|
-   game["teams"].each
-
-   Game.create(
-      sport_key: game["sport_key"],
-      sport_nice: game["sport_nice"],
-      home_team: game["home_team"],
-      commence_time: game["commence_time"],
-      sites: game["sites"],
-      sites_count: game["sites_count"]
-   )
-
-end
+# puts 'calling to API'
+# response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=spreads&dateFormat=iso'
+# response_body = response.body
+# games = JSON.parse(response_body)
 
 
 
