@@ -6,7 +6,8 @@ class PostsController < ApplicationController
    end
 
    def show
-      post = Post.find(params[:id])
-      render json: post
+      p = Post.find(params[:id])
+      render json: p
    end
+
 end

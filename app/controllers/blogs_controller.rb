@@ -6,7 +6,8 @@ class BlogsController < ApplicationController
    end
 
    def show
-      blog = Blog.find(params[:id])
-      render json: blog
+      b = Blog.find(params[:id])
+      render json: b
    end
+
 end

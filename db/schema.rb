@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_144412) do
+ActiveRecord::Schema.define(version: 2021_02_26_185353) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
-    t.text "content"
+    t.string "content"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -23,41 +23,48 @@ ActiveRecord::Schema.define(version: 2021_02_26_144412) do
 
   create_table "favorites_lists", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "stories_id", null: false
+    t.integer "story_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["stories_id"], name: "index_favorites_lists_on_stories_id"
+    t.index ["story_id"], name: "index_favorites_lists_on_story_id"
     t.index ["user_id"], name: "index_favorites_lists_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
     t.string "sport_key"
     t.string "sport_nice"
+    t.string "away_team"
     t.string "home_team"
     t.string "commence_time"
-    t.string "sites"
-    t.integer "sites_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "away_team"
   end
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
-    t.string "sport"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "content"
-    t.string "likes"
+    t.integer "likes"
     t.integer "user_id", null: false
     t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_posts_on_game_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "site_key"
+    t.string "site_nice"
+    t.string "last_update"
+    t.string "odds"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "game_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -68,18 +75,25 @@ ActiveRecord::Schema.define(version: 2021_02_26_144412) do
     t.string "url"
     t.string "url_to_image"
     t.string "published_at"
-    t.text "content"
+    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "team_games", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_team_games_on_game_id"
+    t.index ["team_id"], name: "index_team_games_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "game_id", null: false
     t.integer "league_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["league_id"], name: "index_teams_on_league_id"
   end
 
@@ -92,10 +106,11 @@ ActiveRecord::Schema.define(version: 2021_02_26_144412) do
   end
 
   add_foreign_key "blogs", "users"
-  add_foreign_key "favorites_lists", "stories", column: "stories_id"
+  add_foreign_key "favorites_lists", "stories"
   add_foreign_key "favorites_lists", "users"
   add_foreign_key "posts", "games"
   add_foreign_key "posts", "users"
-  add_foreign_key "teams", "games"
+  add_foreign_key "team_games", "games"
+  add_foreign_key "team_games", "teams"
   add_foreign_key "teams", "leagues"
 end

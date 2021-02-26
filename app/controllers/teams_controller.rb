@@ -9,4 +9,5 @@ class TeamsController < ApplicationController
       team = Team.find(params[:id])
       render json: team
    end
+
 end

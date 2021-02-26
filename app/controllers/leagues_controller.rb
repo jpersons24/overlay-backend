@@ -6,8 +6,8 @@ class LeaguesController < ApplicationController
    end
 
    def show
-      league = League.find(params[:id])
-      render json: league
+      l = League.find(params[:id])
+      render json: l
    end
 
 end

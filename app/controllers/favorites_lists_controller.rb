@@ -6,8 +6,8 @@ class FavoritesListsController < ApplicationController
    end
 
    def show
-      favorites_list = FavoritesList.find(params[:id])
-      render json: favorites_list
+      fl = FavoritesList.find(params[:id])
+      render json: fl
    end
-
+   
 end

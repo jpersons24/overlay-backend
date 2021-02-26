@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-   
+
    def index
       stories = Story.all
       render json: stories
@@ -7,5 +7,7 @@ class StoriesController < ApplicationController
 
    def show
       story = Story.find(params[:id])
+      render json: story
    end
+   
 end

@@ -1,3 +1,3 @@
 class LeagueSerializer < ActiveModel::Serializer
-  attributes :id, :name, :sport
+  attributes :id, :name
 end
