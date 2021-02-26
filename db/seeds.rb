@@ -42,19 +42,14 @@ require 'pry'
 
 
 # ***** GET ALL GAME AND ODDS DATA ******
-
 # puts 'destroying previous games'
 # Game.destroy_all
-
 # Game, team, leagues and odds data retreived
 # response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=spreads&dateFormat=iso'
 # response_body = response.body
 # games = JSON.parse(response_body)
-
 # puts 'getting game info from odds API'
-
 # puts 'creating new games'
-
 # games["data"].each do |single_game|
 #    # create game details with home and away teams
 #    Game.create(
@@ -64,13 +59,11 @@ require 'pry'
 #       away_team: single_game["teams"].find{|t| t != single_game["home_team"]},
 #       commence_time: single_game["commence_time"]
 #    )
-
 # end
 
 
 # ******* Create odds through Sites *********
 # game_id_bag = Game.all.collect{|g| g.id}
-
 # game_id_bag.each do |id|
 #    Site.create(
 #       site_key: "Site_key",
@@ -122,9 +115,7 @@ require 'pry'
 
 
 #  ***** Creating Users ******
-
 # puts 'creating users'
-
 # 5.times do
 #    User.create(username: Faker::Name.first_name, password: Faker::Name.last_name, profile_img: "https://pbs.twimg.com/profile_images/1246151237889921032/i4QYCOHi.jpg")
 # end
@@ -134,7 +125,6 @@ require 'pry'
 # puts 'destroying posts'
 # Post.destroy_all
 # puts 'writing posts'
-
 # 5.times do
 #    Post.create(content: "That's all I have to say about that!", likes: rand(1..100), user_id: rand(1..5), game_id: rand(11..19))
 # end
