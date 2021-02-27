@@ -12,9 +12,6 @@ require 'pry'
 
 
 
-# ******* CREATE FAKE USER ACCOUNTS ******
-
-
 
 # ***** CREATE NEWS STORIES *****
 
@@ -45,9 +42,10 @@ require 'pry'
 # puts 'destroying previous games'
 # Game.destroy_all
 # Game, team, leagues and odds data retreived
-# response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=spreads&dateFormat=iso'
+# response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=h2h&dateFormat=iso'
 # response_body = response.body
 # games = JSON.parse(response_body)
+# byebug
 # puts 'getting game info from odds API'
 # puts 'creating new games'
 # games["data"].each do |single_game|
@@ -63,6 +61,24 @@ require 'pry'
 
 
 # ******* Create odds through Sites *********
+# puts 'destroying current Sites'
+# Site.destroy_all
+
+# create while loop to access each games site array
+# i = 0
+# while (i < games["data"].length)
+#    games["data"][i]["sites"].each do |s|
+#       Site.create(
+#          site_key: s["site_key"],
+#          site_nice: s["site_nice"],
+#          last_update: s["last_update"],
+#          odds: s["odds"]["h2h"].join(", "),
+#          game_id: (i + 11)
+#       )
+#    end
+#    i += 1
+# end
+
 # game_id_bag = Game.all.collect{|g| g.id}
 # game_id_bag.each do |id|
 #    Site.create(
@@ -130,6 +146,33 @@ require 'pry'
 # end
 
 
+# ******* CREATE TEAMGAMES *******
+# puts 'destroying all TeamGames'
+# TeamGame.destroy_all
+# puts 'creating TeamGames with home teams only'
+
+# def home_teams
+#    games = Game.all
+#    games.each do |game|
+#       ht = Team.find_by(name: game.home_team)
+#       TeamGame.create(game_id: game.id, team_id: ht.id)
+#       # byebug
+#    end
+# end
+
+# puts 'home team TeamGames'
+# home_teams
+
+# def away_teams
+#    games = Game.all
+#    games.each do |game|
+#       at = Team.find_by(name: game.away_team)
+#       TeamGame.create(game_id: game.id, team_id: at.id)
+#    end
+# end
+
+# puts 'away team TeamGames'
+# away_teams
 
 
 
