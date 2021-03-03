@@ -15,5 +15,4 @@ class FavoritesListsController < ApplicationController
       render json: fl_item
    end
 
-   
 end
