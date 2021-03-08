@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_185353) do
+ActiveRecord::Schema.define(version: 2021_03_07_234845) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -73,11 +73,11 @@ ActiveRecord::Schema.define(version: 2021_02_26_185353) do
     t.string "title"
     t.string "description"
     t.string "url"
-    t.string "url_to_image"
     t.string "published_at"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "urlToImage"
   end
 
   create_table "team_games", force: :cascade do |t|
