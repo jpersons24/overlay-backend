@@ -174,6 +174,6 @@ require 'pry'
 # puts 'away team TeamGames'
 # away_teams
 
-
+# Game.destroy_all
 
 puts 'finished seeding'
