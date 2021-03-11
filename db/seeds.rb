@@ -39,17 +39,18 @@ require 'pry'
 
 
 # ***** GET ALL GAME AND ODDS DATA ******
-# puts 'destroying previous games'
-# Game.destroy_all
+# puts 'destroying games'
+# puts 'destroying posts'
+
+
 # Game, team, leagues and odds data retreived
-# response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=basketball_nba&region=us&mkt=h2h&dateFormat=iso'
+# response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=icehockey_nhl&region=us&mkt=h2h&dateFormat=iso'
 # response_body = response.body
 # games = JSON.parse(response_body)
 # byebug
-# puts 'getting game info from odds API'
+
 # puts 'creating new games'
 # games["data"].each do |single_game|
-#    # create game details with home and away teams
 #    Game.create(
 #       sport_key: single_game["sport_key"],
 #       sport_nice: single_game["sport_nice"],
@@ -65,6 +66,7 @@ require 'pry'
 # Site.destroy_all
 
 # create while loop to access each games site array
+# puts 'creating sites'
 # i = 0
 # while (i < games["data"].length)
 #    games["data"][i]["sites"].each do |s|
@@ -73,7 +75,7 @@ require 'pry'
 #          site_nice: s["site_nice"],
 #          last_update: s["last_update"],
 #          odds: s["odds"]["h2h"].join(", "),
-#          game_id: (i + 11)
+#          game_id: (i + 1)
 #       )
 #    end
 #    i += 1
@@ -89,45 +91,6 @@ require 'pry'
 #       game_id: id
 #    )
 # end
-
-
-
-# ****** CREATE LEAGUE ******
-# League.create(name: "NBA")
-
-
-
-# ****** CREATING TEAMS ******
-# Team.create(name: "Atlanta Hawks", league_id: 1)
-# Team.create(name: "Boston Celtics", league_id: 1)
-# Team.create(name: "Brooklyn Nets", league_id: 1)
-# Team.create(name: "Charlotte Hornets", league_id: 1)
-# Team.create(name: "Chicago Bulls", league_id: 1)
-# Team.create(name: "Cleveland Cavaliers", league_id: 1)
-# Team.create(name: "Dallas Mavericks", league_id: 1)
-# Team.create(name: "Denver Nuggets", league_id: 1)
-# Team.create(name: "Detroit Pistons", league_id: 1)
-# Team.create(name: "Golden State Warriors", league_id: 1)
-# Team.create(name: "Houston Rockets", league_id: 1)
-# Team.create(name: "Indiana Pacers", league_id: 1)
-# Team.create(name: "LA Clippers", league_id: 1)
-# Team.create(name: "LA Lakers", league_id: 1)
-# Team.create(name: "Memphis Grizzlies", league_id: 1)
-# Team.create(name: "Miami Heat", league_id: 1)
-# Team.create(name: "Milwaukee Bucks", league_id: 1)
-# Team.create(name: "Minnesota Timberwolves", league_id: 1)
-# Team.create(name: "New Orleans Pelicans", league_id: 1)
-# Team.create(name: "New York Knicks", league_id: 1)
-# Team.create(name: "Oklahoma City Thunder", league_id: 1)
-# Team.create(name: "Orlando Magic", league_id: 1)
-# Team.create(name: "Philadelphia Sixers", league_id: 1)
-# Team.create(name: "Phoenix Suns", league_id: 1)
-# Team.create(name: "Portland Trail Blazers", league_id: 1)
-# Team.create(name: "Sacramento Kings", league_id: 1)
-# Team.create(name: "San Antonio Spurs", league_id: 1)
-# Team.create(name: "Toronto Raptors", league_id: 1)
-# Team.create(name: "Utah Jazz", league_id: 1)
-# Team.create(name: "Washington Wizards", league_id: 1)
 
 
 #  ***** Creating Users ******
@@ -146,34 +109,5 @@ require 'pry'
 # end
 
 
-# ******* CREATE TEAMGAMES *******
-# puts 'destroying all TeamGames'
-# TeamGame.destroy_all
-# puts 'creating TeamGames with home teams only'
-
-# def home_teams
-#    games = Game.all
-#    games.each do |game|
-#       ht = Team.find_by(name: game.home_team)
-#       TeamGame.create(game_id: game.id, team_id: ht.id)
-#       # byebug
-#    end
-# end
-
-# puts 'home team TeamGames'
-# home_teams
-
-# def away_teams
-#    games = Game.all
-#    games.each do |game|
-#       at = Team.find_by(name: game.away_team)
-#       TeamGame.create(game_id: game.id, team_id: at.id)
-#    end
-# end
-
-# puts 'away team TeamGames'
-# away_teams
-
-# Game.destroy_all
 
 puts 'finished seeding'
