@@ -15,4 +15,10 @@ class FavoritesListsController < ApplicationController
       render json: fl_item
    end
 
+   def destroy
+      fl_item = FavoritesList.find(params[:id])
+      fl_item.destroy
+   end
+
+
 end

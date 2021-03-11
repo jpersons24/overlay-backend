@@ -100,6 +100,8 @@ require 'pry'
 # end
 
 
+
+
 # ****** Creating Posts *****
 # puts 'destroying posts'
 # Post.destroy_all
@@ -107,6 +109,12 @@ require 'pry'
 # 5.times do
 #    Post.create(content: "That's all I have to say about that!", likes: rand(1..100), user_id: rand(1..5), game_id: rand(11..19))
 # end
+puts 'creating user'
+# User.create(username: "jakeyP", password: "ilovebrynn", profile_img: "https://miro.medium.com/max/3150/1*iEE58NvgyvwSxwk5R9j3IQ.png")
+
+4.times do
+   User.create(username: Faker::FunnyName.two_word_name, password: "123")
+end
 
 
 
