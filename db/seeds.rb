@@ -112,10 +112,12 @@ require 'pry'
 puts 'creating user'
 # User.create(username: "jakeyP", password: "ilovebrynn", profile_img: "https://miro.medium.com/max/3150/1*iEE58NvgyvwSxwk5R9j3IQ.png")
 
-4.times do
-   User.create(username: Faker::FunnyName.two_word_name, password: "123")
-end
+# 4.times do
+#    User.create(username: Faker::FunnyName.two_word_name, password: "123")
+# end
 
+
+User.create(username: "Matt", password: "1234")
 
 
 puts 'finished seeding'
