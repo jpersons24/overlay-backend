@@ -8,47 +8,16 @@
 
 require 'faker'
 require 'rest-client'
-require 'pry'
 
 
-
-
-# ***** CREATE NEWS STORIES *****
-
-
-# All news story data retrieved and successfully created here:
-# response = RestClient.get 'https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=c57acc4703364867840f0f90de339cf3'
-# response_body = response.body
-# stories = JSON.parse(response_body)
-
-# puts = 'creating story from news API'
-
-# stories["articles"].each do |article|
-#    Story.create(
-#       source: article["source"]["name"],
-#       author: article["author"],
-#       title: article["title"],
-#       description: article["description"],
-#       url: article["url"],
-#       url_to_image: article["urlToImage"],
-#       published_at: article["publishedAt"],
-#       content: article["content"]
-#    )
-# end
-
-
-
-# ***** GET ALL GAME AND ODDS DATA ******
-# puts 'destroying games'
-# puts 'destroying posts'
-
-
-# Game, team, leagues and odds data retreived
+# ****** CALL TO ODDS API *******
 # response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=icehockey_nhl&region=us&mkt=h2h&dateFormat=iso'
 # response_body = response.body
 # games = JSON.parse(response_body)
 # # byebug
 
+
+# ******** CREATE GAMES ********
 # puts 'creating new games'
 # games["data"].each do |single_game|
 #    Game.create(
@@ -61,11 +30,12 @@ require 'pry'
 # end
 
 
-# ******* Create odds through Sites *********
+# ******* Create Sites *********
 # puts 'destroying current Sites'
 # Site.destroy_all
 
 # create while loop to access each games site array
+      # ***** while loop body will need to change based on what odds are coming back from API --> other types of odds are nested hashes *****
 # puts 'creating sites'
 # i = 0
 # while (i < games["data"].length)
@@ -81,6 +51,8 @@ require 'pry'
 #    i += 1
 # end
 
+
+# ******** DO NOT USE *********
 # game_id_bag = Game.all.collect{|g| g.id}
 # game_id_bag.each do |id|
 #    Site.create(
@@ -95,30 +67,13 @@ require 'pry'
 
 #  ***** Creating Users ******
 # puts 'creating users'
-# 5.times do
-#    User.create(username: Faker::Name.first_name, password: Faker::Name.last_name, profile_img: "https://pbs.twimg.com/profile_images/1246151237889921032/i4QYCOHi.jpg")
-# end
+
 
 
 
 
 # ****** Creating Posts *****
-# puts 'destroying posts'
-# Post.destroy_all
-# puts 'writing posts'
-# 5.times do
-#    Post.create(content: "That's all I have to say about that!", likes: rand(1..100), user_id: rand(1..5), game_id: rand(11..19))
-# end
-# puts 'creating user'
-# User.create(username: "jakeyP", password: "ilovebrynn", profile_img: "https://miro.medium.com/max/3150/1*iEE58NvgyvwSxwk5R9j3IQ.png")
 
-# 4.times do
-#    User.create(username: Faker::FunnyName.two_word_name, password: "123")
-# end
-
-
-# User.create(username: "Matt", password: "1234")
-# User.create(username: "Harry", password: "123")
 
 
 
