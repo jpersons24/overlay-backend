@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 
    def authenticate
-      @current_user = User.find(6)
+      @current_user = User.second
    end
 
 end

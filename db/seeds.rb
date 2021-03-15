@@ -47,7 +47,7 @@ require 'pry'
 # response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=icehockey_nhl&region=us&mkt=h2h&dateFormat=iso'
 # response_body = response.body
 # games = JSON.parse(response_body)
-# byebug
+# # byebug
 
 # puts 'creating new games'
 # games["data"].each do |single_game|
@@ -109,7 +109,7 @@ require 'pry'
 # 5.times do
 #    Post.create(content: "That's all I have to say about that!", likes: rand(1..100), user_id: rand(1..5), game_id: rand(11..19))
 # end
-puts 'creating user'
+# puts 'creating user'
 # User.create(username: "jakeyP", password: "ilovebrynn", profile_img: "https://miro.medium.com/max/3150/1*iEE58NvgyvwSxwk5R9j3IQ.png")
 
 # 4.times do
@@ -117,7 +117,9 @@ puts 'creating user'
 # end
 
 
-User.create(username: "Matt", password: "1234")
+# User.create(username: "Matt", password: "1234")
+# User.create(username: "Harry", password: "123")
+
 
 
 puts 'finished seeding'
