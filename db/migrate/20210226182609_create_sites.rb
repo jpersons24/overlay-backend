@@ -1,10 +1,10 @@
 class CreateSites < ActiveRecord::Migration[6.1]
   def change
     create_table :sites do |t|
-      t.string :site_key
-      t.string :site_nice
-      t.string :last_update
-      t.string :odds
+      t.text :site_key
+      t.text :site_nice
+      t.text :last_update
+      t.text :odds
 
       t.timestamps
     end
