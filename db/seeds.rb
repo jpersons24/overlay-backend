@@ -9,6 +9,10 @@
 require 'faker'
 require 'rest-client'
 
+# puts 'Destroying all posts'
+# Post.destroy_all
+# puts 'Destroying all games'
+# Game.destroy_all
 
 # ****** CALL TO ODDS API *******
 # response = RestClient.get 'https://api.the-odds-api.com/v3/odds/?apiKey=e9f576a0a8b58da82e7708ac0b19346e&sport=icehockey_nhl&region=us&mkt=h2h&dateFormat=iso'
