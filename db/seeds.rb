@@ -32,8 +32,7 @@ require 'rest-client'
 #       commence_time: single_game["commence_time"]
 #    )
 # end
-puts 'destroying all games'
-Game.destroy_all
+
 
 
 # ******* Create Sites *********
