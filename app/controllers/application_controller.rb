@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 
    def authenticate
-      @current_user = User.second
+      @current_user = User.first
    end
 
 end
