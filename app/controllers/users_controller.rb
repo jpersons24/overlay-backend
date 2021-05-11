@@ -11,4 +11,14 @@ class UsersController < ApplicationController
       render json: @current_user
    end
 
+   # POST /login
+   def login
+      user = User.find_by(username: params[:username])
+      if user && user.authenticate(params[:password])
+         render json: user
+      else
+         render json: { errors: ["Invalid username or password"] }, status: :unauthorized
+      end
+   end
+
 end

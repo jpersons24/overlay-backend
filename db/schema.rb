@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_090801) do
+ActiveRecord::Schema.define(version: 2021_05_11_203953) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_090801) do
     t.index ["user_id"], name: "index_favorites_lists_on_user_id"
   end
 
-  create_table "games", force: :cascade do |t|
+  create_table "games", id: :string, force: :cascade do |t|
     t.string "sport_key"
     t.string "sport_nice"
     t.string "away_team"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_090801) do
     t.string "content"
     t.integer "likes"
     t.integer "user_id", null: false
-    t.integer "game_id", null: false
+    t.string "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_posts_on_game_id"
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_090801) do
     t.string "odds"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "game_id"
+    t.string "game_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_090801) do
 
   create_table "team_games", force: :cascade do |t|
     t.integer "team_id", null: false
-    t.integer "game_id", null: false
+    t.string "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_team_games_on_game_id"
@@ -99,18 +102,19 @@ ActiveRecord::Schema.define(version: 2021_03_11_090801) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
     t.string "profile_img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "blogs", "users"
   add_foreign_key "favorites_lists", "stories"
   add_foreign_key "favorites_lists", "users"
-  add_foreign_key "posts", "games"
+  add_foreign_key "posts", "games", name: "posts_game_id_fkey"
   add_foreign_key "posts", "users"
-  add_foreign_key "team_games", "games"
+  add_foreign_key "sites", "games", name: "sites_game_id_fkey"
+  add_foreign_key "team_games", "games", name: "team_games_game_id_fkey"
   add_foreign_key "team_games", "teams"
   add_foreign_key "teams", "leagues"
 end

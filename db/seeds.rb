@@ -80,6 +80,12 @@ require 'rest-client'
 # ****** Creating Posts *****
 
 
-
+# puts 'Destroying all data'
+# FavoriteList.destroy_all
+# Post.destroy_all
+# Site.destroy_all
+# Story.destroy_all
+# User.destroy_all
+# User.create(username: "Bill", password: "123")
 
 puts 'finished seeding'
