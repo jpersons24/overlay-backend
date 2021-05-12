@@ -11,6 +11,16 @@ class UsersController < ApplicationController
       render json: @current_user
    end
 
+   def create
+      user = User.create(user_params)
+
+      if user.valid?
+         render json: user, status: :created
+      else
+         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      end
+   end
+
    # POST /login
    def login
       user = User.find_by(username: params[:username])
@@ -19,6 +29,13 @@ class UsersController < ApplicationController
       else
          render json: { errors: ["Invalid username or password"] }, status: :unauthorized
       end
+   end
+
+
+   private
+
+   def user_params
+      params.permit(:username, :password, :profile_img)
    end
 
 end
